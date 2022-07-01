@@ -3,143 +3,41 @@ import { useMoralis, useMoralisFile } from "react-moralis";
 import { useState, useEffect } from "react";
 import Connect from "../components/Connect";
 import Moralis from "moralis";
-import { contractABI,contractAddress } from "../utils/contract";
+import { contractABI, contractAddress } from "../utils/contract";
 import ethers, { Contract } from "ethers";
-import Web3 from "web3"
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import Web3 from "web3";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const tutlink =
   "https://blog.logrocket.com/create-nft-minter-moralis-solidity-next-js/";
 const HomeMain = () => {
-  // const { isAuthenticated, logout, user } = useMoralis();
-  // const userEthAddress = user && user.get("ethAddress");
-
-  // const [nftName, setnftName] = useState("");
-  // const [metadataDescription, setmetadataDescription] = useState("");
-  // const [nftImage, setnftImage] = useState("");
-  // const [nftAddress, setNftAddress] = useState("");
-  // const [isminted, setisminted] = useState(false);
-  // const [isMinting, setisMinting] = useState(false);
-  // const [mintingStatus, setmintingStatus] = useState("");
-  // const { saveFile } = useMoralisFile();
-
-  // const uploadImage = async (e) => {
-  //   const data = e.target.files[0];
-  //   const file = new Moralis.File(data.name, data);
-  //   await file.saveIPFS();
-  //   console.log(file.ipfs(), file.hash());
-  //   return file.ipfs();
-  // };
-  // const uploadMetadata = async (imageURL) => {
-  //   const name = getElementbyId("metadataName").value;
-  //   const description = getElementbyId("metadataDescription").value;
-  //   const metadata = {
-  //     "name": name,
-  //     "description": description,
-  //    " image": imageURL,
-  //   };
-  //   const file = new Moralis.File("file.json", {
-  //     base64: btoa(JSON.stringify(metadata)),
-  //   });
-  //   await file.saveIPFS();
-  //   console.log(file.ipfs());
-  // };
-
-  // const gogo = async () => {
-  //   const image = await uploadImage();
-  //   await uploadMetadata(image);
-  //   console.log(file.ipfs());
-  //   console.log("hehe");
-  // };
-
-  // const mintNft = async (e) => {};
-
-  // const handleLogout = (e) => {
-  //   e.preventDefault();
-  //   logout();
-  // };
-
-  // return (
-  //   <>
-  //     <div className="bg-slate-800 ">
-  //       {isAuthenticated ? (
-  //         <div className="">
-  //           {/* Display Minting Form */}
-
-  //           <h2 className="hero-title text-style">Mint New NFT</h2>
-
-  //           <div className="form-wrapper">
-  //             <form>
-  //               <div className="form-group">
-  //                 <label htmlFor="metadataName" className="text-white">
-  //                   NFT Name
-  //                 </label>
-  //                 <input
-  //                   type="text"
-  //                   className="form-control"
-  //                   id="metadataName"
-  //                   placeholder="e.g Apes"
-  //                   value={nftName}
-  //                   onChange={(e) => setnftName(e.target.value)}
-  //                 />
-  //               </div>
-
-  //               <div className="form-group">
-  //                 <label htmlFor="nft-image">NFT File</label>
-  //                 <input
-  //                   type="file"
-  //                   onChange={(e) => setnftImage(e.target.files[0])}
-  //                   className="form-control"
-  //                   id="fileInput"
-  //                 />
-  //               </div>
-  //               <div className="form-group">
-  //                 <label htmlFor="metadataDescription" className="text-white">
-  //                   NFT Description
-  //                 </label>
-  //                 <textarea
-  //                   type="text"
-  //                   className="form-control"
-  //                   id="metadataDescription"
-  //                   placeholder="Write a short description of your NFT"
-  //                   value={metadataDescription}
-  //                   onChange={(e) => setmetadataDescription(e.target.value)}
-  //                 />
-  //               </div>
-  //               {/* Mint button */}
-  //               <div className="text-white">
-  //                 <button type="button" className="mint-btn" onClick={mintNft}>
-  //                   {isMinting ? mintingStatus : "Mint NFT"}
-  //                 </button>
-  //               </div>
-  //               <button
-  //                 className="text-white bg-blue-600 rounded-lg"
-  //                 onClick={(e) => gogo(e)}
-  //               >
-  //                 GOGO
-  //               </button>
-  //             </form>
-  //           </div>
-  //         </div>
-  //       ) : (
-  //         <div className="bg-slate-800 h-screen ">
-  //           {/* <img
-  //                   src="https://w0.peakpx.com/wallpaper/746/806/HD-wallpaper-memes-collage-no-2-cat-awesome-pandabomb-dog-meme.jpg"
-  //                   alt="bg"
-  //                   className="bg-cover bg-center h-screen w-screen"
-  //               />
-  //               */}
-  //         </div>
-  //       )}
-  //     </div>
-  //     </>
-  //   );
-  // };
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { isAuthenticated, logout, user } = useMoralis();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   // const router = useRouter();
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    color: "green",
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -161,7 +59,7 @@ const HomeMain = () => {
       console.log(metadataurl);
       // Interact with smart contract
       const web3 = new Web3(Web3.givenProvider);
-    
+
       const contract = new web3.eth.Contract(contractABI, contractAddress);
 
       const response = await contract.methods
@@ -170,25 +68,10 @@ const HomeMain = () => {
       // Get token id
       const tokenId = response.events.Transfer.returnValues.tokenId;
 
-
-      //ethers
-      // const contractAddress = "0x88267feffdb723d91e4f84910bd583792d6b76a7";
-      // const provider = new ethers.providers.Web3Provider(window.ethereum);
-      // const contract = new ethers.Contract(
-      //   contractAddress,
-      //   contractABI,
-      //   provider
-      // );
-
-      // const response = await contract.methods
-      //   .mint(metadataurl)
-      //   .send({ from: user.get("ethAddress") });
-      // Get token id
-     
       // Display alert
       alert(
         // `NFT successfully minted. Contract address - ${contractAddress} and Token ID - ${tokenId}`
-        `here's link https://testnets.opensea.io/assets/${contractAddress}/${tokenId}`
+        `Minted Successfully!! here's link https://testnets.opensea.io/assets/${contractAddress}/${tokenId}`
       );
     } catch (err) {
       console.error(err);
@@ -196,51 +79,99 @@ const HomeMain = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (!isAuthenticated) router.replace("/");
-  // }, [isAuthenticated]);
   return (
-    <div className="flex w-screen h-screen items-center justify-center">
-      <form onSubmit={onSubmit}>
-        <div>
-          <input
-            type="text"
-            className="border-[1px] p-2 text-lg border-black w-full"
-            value={name}
-            placeholder="Name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="mt-3">
-          <input
-            type="text"
-            className="border-[1px] p-2 text-lg border-black w-full"
-            value={description}
-            placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className="mt-3">
-          <input
-            type="file"
-            className="border-[1px] p-2 text-lg border-black"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-        </div>
-        <button
+    <>
+      <div className="min-h-screen min-w-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-600">
+        <NavBar />
+        <div className="flex  h-screen pt-32 justify-center ">
+          <form onSubmit={onSubmit}>
+            <div className="">
+              <p className="text-4xl font-bold text-white pb-11">
+                Mint your Meme/Joke/Tweet!!
+              </p>
+              <input
+                type="text"
+                className=" w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-white
+            focus:text-white
+            bg-transparent
+            border border-solid 
+            rounded
+            transition
+            ease-in-out
+            m-0
+          focus:border-blue-600 focus:outline-none"
+                value={name}
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="mt-3">
+              <input
+                type="text"
+                className="        w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-white
+            focus:text-white
+            bg-transparent bg-clip-padding
+            border border-solid 
+            rounded
+            transition
+            ease-in-out
+            m-0
+          focus:border-blue-600 focus:outline-none"
+                value={description}
+                placeholder="Description"
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="mt-3 text-white ">
+              <input
+                type="file"
+                className="border-[1px] p-2 text-lg border-black"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </div>
+            {/* <button
+            type="submit"
+            className="mt-5 w-full p-5 text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 rounded-2xl"
+          >
+            <p className="font-semibold">Mint</p>
+          </button> */}
+            <button
+              type="submit"
+              class="scale-150 ml-56 mt-8  relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+            >
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Mint
+              </span>
+            </button>
+            {/* <button
           type="submit"
-          className="mt-5 w-full p-5 bg-green-700 text-white text-lg rounded-xl animate-pulse"
+          className="mt-5 w-full p-5 text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 rounded-2xl"
         >
-          Mint now!
-        </button>
-        <button
+          <p className="font-semibold">Mint as Soul-Bound-Token</p>
+        </button> */}
+            {/* <button
           onClick={logout}
           className="mt-5 w-full p-5 bg-red-700 text-white text-lg rounded-xl"
         >
           Logout
-        </button>
-      </form>
-    </div>
+        </button> */}
+          </form>
+        </div>
+      </div>
+      {/* <div className="absolute bottom-0 min-h-screen">
+        <Footer />
+      </div> */}
+    </>
   );
 };
 

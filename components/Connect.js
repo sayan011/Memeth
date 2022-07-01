@@ -9,9 +9,9 @@ const Connect = () => {
     logout();
   };
   return (
-    <div className="absolute top-0 right-0 p-5 mx-auto mt-2">
+    <div className=" p-5 mx-auto mt-2 scale-90">
       
-      <ConnectButton className="py-4 " />
+      <ConnectButton/>
     </div>
   );
 };
