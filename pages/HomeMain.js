@@ -15,8 +15,7 @@ import Footer from "../components/Footer";
 import Image from "next/image";
 
 
-const tutlink =
-  "https://blog.logrocket.com/create-nft-minter-moralis-solidity-next-js/";
+
 const HomeMain = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
