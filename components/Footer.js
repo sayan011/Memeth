@@ -52,7 +52,7 @@ const Footer = () => {
           <div className=" m-auto text-center md:text-left my-7 ">
             <h2 className="flex text-xl font-bold mb-2">Social Media</h2>
             <div className="flex ">
-              <a href="https://twitter.com/sayan_011" target="_blank">
+              <a href="https://twitter.com/sayan_011" target="_blank" rel="noreferrer">
                 <div className="px-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +69,7 @@ const Footer = () => {
                 <a
                   href="https://www.linkedin.com/in/sayan-chowdhury-57108b227/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +83,7 @@ const Footer = () => {
                 </a>
               </div>
               <div className="px-2">
-                <a href="https://github.com/sayan011/Memeth " target="_blank">
+                <a href="https://github.com/sayan011/Memeth " target="_blank" rel="noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
