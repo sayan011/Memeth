@@ -12,6 +12,8 @@ import Modal from "@mui/material/Modal";
 import Web3 from "web3";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import Image from "next/image";
+
 
 const tutlink =
   "https://blog.logrocket.com/create-nft-minter-moralis-solidity-next-js/";
@@ -23,6 +25,8 @@ const HomeMain = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
+  const [loader, setLoader] = useState(false)
+
   // const router = useRouter();
 
   const style = {
@@ -135,10 +139,11 @@ const HomeMain = () => {
             <div className="mt-3 text-white ">
               <input
                 type="file"
-                className="border-[1px] p-2 text-lg border-black"
+                className="border-[1px] p-2 text-lg border-black "
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </div>
+           
             {/* <button
             type="submit"
             className="mt-5 w-full p-5 text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 rounded-2xl"

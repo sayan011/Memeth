@@ -3,11 +3,11 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <div className="absolute bottom-0 w-screen pt-10">
+      <div className=" w-screen bg-black">
         <div className=" text-white grid md:grid-cols-5 bg-skin-lightBlue p-10 grid-cols-1 mt-10 bottom-0  ">
           <div className=" text-center m-auto flex">
-            <img className="w-56 m-auto scale-75" src="/memth.png" alt="logo" />
-            {/* <p className="mt-24 font-semibold text-xl">Memeth</p> */}
+            {/* <img className="w-56 m-auto scale-75" src="/memth.png" alt="logo" /> */}
+            <p className="font-semibold text-4xl">Memeth</p>
           </div>
           <div className=" m-auto text-center md:text-left my-7">
             <h2 className="text-xl font-bold mb-2">Know Us</h2>
@@ -98,9 +98,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="bg-black flex justify-between px-[7vw] sm:flex-row flex-col py-5">
-          <p className="text-center text-white ">
-            Copyright&copy; Memeth 2022
-          </p>
+          <p className="text-center text-white ">Copyright&copy; Memeth 2022</p>
 
           <p className="text-center text-white sm:pt-0 pt-4 cursor-pointer">
             Powered by Memeth

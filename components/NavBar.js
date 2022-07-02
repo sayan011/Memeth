@@ -55,7 +55,7 @@ const NavBar = () => {
                       </a>
                     </div>
 
-                    <ConnectButton className="pl-8" />
+                    <ConnectButton className="pl-8 " />
                   </div>
                 </div>
               </nav>
