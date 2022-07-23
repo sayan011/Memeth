@@ -47,7 +47,7 @@ const NavBar = () => {
                       <a href="#" className="hover:scale-x-110 hover:underline">
                         About
                       </a>
-                      <Link href="/Gallery" className="hover:scale-x-110 hover:underline">
+                      <Link href="#" className="hover:scale-x-110 hover:underline">
                         Gallery
                       </Link>
                       <a href="#" className="hover:scale-x-110 hover:underline">
