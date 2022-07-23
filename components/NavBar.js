@@ -17,7 +17,7 @@ const NavBar = () => {
                     src="/Memeth.png"
                     alt="logo"
                   /> */}
-                  <p className="font-semibold text-2xl"> Memeth</p>
+                  <p className="font-semibold text-5xl mt-1 font-mono"> MemEth</p>
                 </a>
               </div>
             </Link>
@@ -37,8 +37,8 @@ const NavBar = () => {
                 <ConnectButton className="py-4 " />
               </div> */}
               {/* <Connect/> */}
-              <nav className=" z-10 absolute top-0 right-0">
-                <div className="max-w-5xl px-4 mr-36 ">
+              <nav className=" z-10 absolute top-0 right-0 mt-6">
+                <div className="max-w-5xl px-4 mr-36 font-semibold text-lg ">
                   <div className="flex items-center justify-between h-16">
                     <div className="flex space-x-12 text-white ">
                       <a href="#" className="hover:scale-x-110 hover:underline">
@@ -47,7 +47,7 @@ const NavBar = () => {
                       <a href="#" className="hover:scale-x-110 hover:underline">
                         About
                       </a>
-                      <a href="#" className="hover:scale-x-110 hover:underline">
+                      <a href="/Gallery" className="hover:scale-x-110 hover:underline">
                         Gallery
                       </a>
                       <a href="#" className="hover:scale-x-110 hover:underline">

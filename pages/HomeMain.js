@@ -14,8 +14,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Image from "next/image";
 
-
-
 const HomeMain = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -24,7 +22,7 @@ const HomeMain = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false);
 
   // const router = useRouter();
 
@@ -84,7 +82,7 @@ const HomeMain = () => {
 
   return (
     <>
-      <div className="min-h-screen min-w-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-600">
+      <div className="min-h-screen min-w-screen bg-gradient-to-br bg-gradient-to-r from-black via-black  to-pink-500">
         <NavBar />
         <div className="flex  h-screen pt-32 justify-center ">
           <form onSubmit={onSubmit}>
@@ -142,7 +140,7 @@ const HomeMain = () => {
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </div>
-           
+
             {/* <button
             type="submit"
             className="mt-5 w-full p-5 text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 rounded-2xl"
