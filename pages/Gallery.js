@@ -11,7 +11,7 @@ const Gallery = () => {
         <div className="p-12">
           <p className="font-bold text-white text-6xl ">Certified Memes</p>
           <p className="text-gray-400 mt-8 text-2xl ">
-            Some of the origin's are not seeming quite right?
+            Some of the origin&#39;s are not seeming quite right?
             <br />
             Report those immediately and earn reward
           </p>
